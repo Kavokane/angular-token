@@ -11,7 +11,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build:lib": "ng build --prod angular-token && cp README.md dist/angular-token",
+    "build:lib": "ng build --configuration production angular-token && cp README.md dist/angular-token",
     "test:lib": "ng test angular-token"
   },
   "private": true,
