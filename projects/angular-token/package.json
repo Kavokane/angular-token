@@ -1,6 +1,6 @@
 {
   "name": "angular-token",
-  "version": "9.0.0-beta.0",
+  "version": "10.0.0-beta.0",
   "repository": "https://github.com/neroniaky/angular-token.git",
   "author": {
     "name": "Jan-Philipp Riethmacher",
@@ -12,6 +12,11 @@
       "name": "Arjen Brandenburgh",
       "email": "mail@arjenbrandenburgh.nl",
       "url": "https://github.com/arjenbrandenburgh"
+    },
+    {
+      "name": "Markus Wutzler",
+      "email": "gh@markus-wutzler.de",
+      "url": "https://github.com/mrVVoo"
     }
   ],
   "license": "MIT",
@@ -29,7 +34,7 @@
   },
 
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0"
+    "@angular/common": "^10.0.0",
+    "@angular/core": "^10.0.0"
   }
 }
