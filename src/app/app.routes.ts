@@ -9,4 +9,4 @@ const routerConfig: Routes = [
   { path: 'restricted', component: RestrictedComponent, canActivate: [AngularTokenService] }
 ];
 
-export const routes = RouterModule.forRoot(routerConfig);
+export const routes = RouterModule.forRoot(routerConfig, { relativeLinkResolution: 'legacy' });
