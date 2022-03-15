@@ -1,6 +1,6 @@
 {
   "name": "angular-token",
-  "version": "12.0.0-beta.0",
+  "version": "13.0.0-beta.0",
   "repository": "https://github.com/neroniaky/angular-token.git",
   "author": {
     "name": "Jan-Philipp Riethmacher",
@@ -34,7 +34,7 @@
   },
 
   "peerDependencies": {
-    "@angular/common": "^12.0.0",
-    "@angular/core": "^12.0.0"
+    "@angular/common": "^13.0.0",
+    "@angular/core": "^13.0.0"
   }
 }
