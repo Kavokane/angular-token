@@ -1,29 +1,29 @@
 {
-  "name": "angular-token",
+  "name": "@mrvvoo/angular-token",
   "version": "13.0.0-beta.0",
-  "repository": "https://github.com/neroniaky/angular-token.git",
+  "repository": "https://github.com/mrVVoo/angular-token.git",
   "author": {
-    "name": "Jan-Philipp Riethmacher",
-    "email": "neroniaky@gmail.com",
-    "url": "https://github.com/neroniaky"
+    "name": "Markus Wutzler",
+    "email": "gh@markus-wutzler.de",
+    "url": "https://github.com/mrVVoo"
   },
   "contributors": [
+    {
+      "name": "Jan-Philipp Riethmacher",
+      "email": "neroniaky@gmail.com",
+      "url": "https://github.com/neroniaky"
+    },
     {
       "name": "Arjen Brandenburgh",
       "email": "mail@arjenbrandenburgh.nl",
       "url": "https://github.com/arjenbrandenburgh"
-    },
-    {
-      "name": "Markus Wutzler",
-      "email": "gh@markus-wutzler.de",
-      "url": "https://github.com/mrVVoo"
     }
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/neroniaky/angular-token/issues"
+    "url": "https://github.com/mrVVoo/angular-token/issues"
   },
-  "homepage": "https://github.com/neroniaky/angular-token#readme",
+  "homepage": "https://github.com/mrVVoo/angular-token#readme",
   "keywords": [
     "angular",
     "devise token auth",
