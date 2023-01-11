@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, CanActivate, ActivatedRouteSnapshot, RouterStat
 import { HttpClient, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { isPlatformServer } from '@angular/common';
 
-import { Observable, fromEvent, interval, BehaviorSubject } from 'rxjs';
+import { Observable, fromEvent, interval, BehaviorSubject, catchError } from 'rxjs';
 import { pluck, filter, share, finalize } from 'rxjs/operators';
 
 import { ANGULAR_TOKEN_OPTIONS } from './angular-token.token';
@@ -48,7 +48,7 @@ export class AngularTokenService implements CanActivate {
 
   get apiBase(): string {
     console.warn('[angular-token] The attribute .apiBase will be removed in the next major release, please use' +
-    '.tokenOptions.apiBase instead');
+      '.tokenOptions.apiBase instead');
     return this.options.apiBase;
   }
 
@@ -138,7 +138,7 @@ export class AngularTokenService implements CanActivate {
 
     if (this.options.apiBase === null) {
       console.warn(`[angular-token] You have not configured 'apiBase', which may result in security issues. ` +
-                   `Please refer to the documentation at https://github.com/neroniaky/angular-token/wiki`);
+        `Please refer to the documentation at https://github.com/neroniaky/angular-token/wiki`);
     }
 
     this.tryLoadAuthData();
@@ -257,15 +257,15 @@ export class AngularTokenService implements CanActivate {
       if (oAuthWindowOptions) {
         for (const key in oAuthWindowOptions) {
           if (oAuthWindowOptions.hasOwnProperty(key)) {
-              windowOptions += `,${key}=${oAuthWindowOptions[key]}`;
+            windowOptions += `,${key}=${oAuthWindowOptions[key]}`;
           }
         }
       }
 
       const popup = window.open(
-          authUrl,
-          '_blank',
-          `closebuttoncaption=Cancel${windowOptions}`
+        authUrl,
+        '_blank',
+        `closebuttoncaption=Cancel${windowOptions}`
       );
       return this.requestCredentialsViaPostMessage(popup);
     } else if (oAuthWindowType == 'inAppBrowser') {
@@ -283,9 +283,9 @@ export class AngularTokenService implements CanActivate {
       // }
 
       let browser = inAppBrowser.create(
-          authUrl,
-          '_blank',
-          'location=no'
+        authUrl,
+        '_blank',
+        'location=no'
       );
 
       return new Observable((observer) => {
@@ -307,11 +307,11 @@ export class AngularTokenService implements CanActivate {
               }, (error: any) => {
                 observer.error(error);
                 observer.complete();
-             });
+              });
             }, (error: any) => {
               observer.error(error);
               observer.complete();
-           });
+            });
           }
         }, (error: any) => {
           observer.error(error);
@@ -352,19 +352,18 @@ export class AngularTokenService implements CanActivate {
 
   // Validate token request
   validateToken(): Observable<ApiResponse> {
-    const observ = this.http.get<ApiResponse>(
+    return this.http.get<ApiResponse>(
       this.getServerPath() + this.options.validateTokenPath
-    ).pipe(share());
-
-    observ.subscribe(
-      (res) => this.userData.next(res.data),
-      (error) => {
-        if (error.status === 401 && this.options.signOutFailedValidate) {
-          this.signOut();
-        }
-    });
-
-    return observ;
+    )
+      .pipe(
+        catchError((error) => {
+          if (error.status === 401 && this.options.signOutFailedValidate) {
+            this.signOut();
+          }
+          return throwError(error);
+        }),
+        share()
+      );
   }
 
   // Update password request
@@ -399,8 +398,8 @@ export class AngularTokenService implements CanActivate {
 
   // Reset password request
   resetPassword(resetPasswordData: ResetPasswordData, additionalData?: any): Observable<ApiResponse> {
-    
-    
+
+
     if (additionalData !== undefined) {
       resetPasswordData.additionalData = additionalData;
     }
